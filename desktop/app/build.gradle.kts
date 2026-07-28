@@ -120,6 +120,7 @@ nucleus {
 
         // Define the main class for the application.
         mainClass = "$desktopPackageName.AppKt"
+        jvmArgs(*defaultJvmArgs())
         additionalLaunchers {
             create(cliBinaryName) {
                 mainClass = "$desktopPackageName.cli.CliAppKt"
@@ -245,6 +246,9 @@ fun defaultJvmArgs(): Array<String> {
             add("-XX:AOTCache=${appDir("app.aot")}")
         }
 //        add("-Djpackage.app-version=1.0.0")
+        add("-Xmx192m")
+        add("-Xms32m")
+        add("-XX:+UseSerialGC")
         add("-Dcompose.application.resources.dir=${appDir("resources")}")
         add("-Dcompose.application.configure.swing.globals=true")
         add("--enable-native-access=ALL-UNNAMED")
